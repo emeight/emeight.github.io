@@ -1,6 +1,3 @@
----
-layout: null
----
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,16 +14,16 @@ layout: null
                 </div>
             </div>
             <div class="note-card-stack">
-                {% assign sorted_notes = site.notes | sort: "date" | reverse %}
-                {% for note in sorted_notes %}
+                
+                
                     <note-card
-                    title="{{ note.title | escape }}"
-                    tag="{{ note.tag | escape }}"
-                    {% if note.status %}status="{{ note.status | escape }}"{% endif %}
-                    date="{{ note.date | date: '%B %d, %Y' }}"
-                    href="{{ note.url }}"
+                    title="Dart Propulsion System"
+                    tag="Ballistics"
+                    status="Active"
+                    date="February 16, 2026"
+                    href="/notes/dart-propulsion-system/"
                     ></note-card>
-                {% endfor %}
+                
             </div>
         </div>
     </body>
