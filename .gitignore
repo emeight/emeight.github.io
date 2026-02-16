@@ -1,2 +1,5 @@
 .env
-.jekyll-cache
+
+# ignore Jekyll files
+_site/
+.jekyll-cache/
