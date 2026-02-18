@@ -3,3 +3,5 @@
 # ignore Jekyll files
 _site/
 .jekyll-cache/
+_site/
+.jekyll-cache/
