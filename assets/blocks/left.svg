@@ -1,0 +1,23 @@
+<svg width="55" height="55" viewBox="4.5 0.5 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4.5" y="0.5" width="49" height="49" stroke="black" shape-rendering="crispEdges"/>
+    <line x1="4.64645" y1="3.64645" x2="7.64645" y2="0.646447" stroke="black"/>
+    <line x1="4.64645" y1="8.64645" x2="12.6464" y2="0.646447" stroke="black"/>
+    <line x1="4.64645" y1="13.6464" x2="17.6464" y2="0.646447" stroke="black"/>
+    <line x1="4.64645" y1="18.6464" x2="22.6464" y2="0.646447" stroke="black"/>
+    <line x1="4.64645" y1="23.6464" x2="27.6464" y2="0.646448" stroke="black"/>
+    <line x1="4.64645" y1="28.6464" x2="32.6464" y2="0.646446" stroke="black"/>
+    <line x1="4.64645" y1="33.6464" x2="37.6464" y2="0.646447" stroke="black"/>
+    <line x1="4.64645" y1="38.6464" x2="42.6464" y2="0.646447" stroke="black"/>
+    <line x1="4.64645" y1="43.6464" x2="47.6464" y2="0.646448" stroke="black"/>
+    <line x1="4.64645" y1="48.6464" x2="52.6464" y2="0.646448" stroke="black"/>
+    <line x1="8.64645" y1="49.6464" x2="53.6464" y2="4.64645" stroke="black"/>
+    <line x1="13.6464" y1="49.6464" x2="53.6464" y2="9.64645" stroke="black"/>
+    <line x1="18.6464" y1="49.6464" x2="53.6464" y2="14.6464" stroke="black"/>
+    <line x1="23.6464" y1="49.6464" x2="53.6464" y2="19.6464" stroke="black"/>
+    <line x1="28.6464" y1="49.6464" x2="53.6464" y2="24.6464" stroke="black"/>
+    <line x1="33.6464" y1="49.6464" x2="53.6464" y2="29.6464" stroke="black"/>
+    <line x1="38.6464" y1="49.6464" x2="53.6464" y2="34.6464" stroke="black"/>
+    <line x1="43.6464" y1="49.6464" x2="53.6464" y2="39.6464" stroke="black"/>
+    <line x1="48.6464" y1="49.6464" x2="53.6464" y2="44.6464" stroke="black"/>
+    <rect x="9" y="5" width="50" height="50" fill="black"/>
+</svg>

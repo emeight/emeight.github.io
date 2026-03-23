@@ -1,0 +1,10 @@
+:root {
+    --card-spacing: 8px;
+}
+
+.cards {
+    display: grid;
+    width: 100%;
+    padding: var(--card-spacing) 0;
+    gap: var(--card-spacing);
+}
