@@ -1,110 +1,171 @@
 class BuildCard extends HTMLElement {
     connectedCallback() {
-        const title = this.getAttribute("title") ?? "Draft";
-        const href = this.getAttribute("href") ?? "#";
-        const image = this.getAttribute("image") ?? "./assets/images/ironman.jpg";
-        const tag = this.getAttribute("tag") ?? "Testing";
-        const background = this.getAttribute("background") ?? "#656565";
-        const tag_color = this.getAttribute("tag_color") ?? "#ffffff";
+        const project = this.getAttribute("project") ?? "Draft";
+        const number = this.getAttribute("number") ?? "0";
+        const status = this.getAttribute("status") ?? "active";
+        const stage = this.getAttribute("stage") ?? "Ideating";
+        const version = this.getAttribute("version") ?? "0.0.0";
+        const tag = this.getAttribute("tag") ?? "";
+        const details = this.getAttribute("details") ?? "";
 
         this.innerHTML = `
             <style>
                 build-card {
-                    --card-padding-x: 16px;
-                    --card-padding-y: 12px;
+                    --light-cell: #fff;
+                    --dark-cell: #111;
 
-                    --row-spacing: 16px;
-                    --tag-drop: 20px;
-
-                    display: block;
-                    width: 100%;
-                    background: ${background};
+                    --text-row-height: 50px;
+                    --media-row-height: 120px;
                 }
 
-                build-card > .card {
+                build-card > .grid {
                     display: grid;
-                    grid-template-rows: auto auto;
-                    width: 100%;
-                    padding-top: var(--card-padding-y);
-                    padding-right: var(--card-padding-x);
-                    padding-bottom: calc(var(--card-padding-y) + var(--tag-drop));
-                    padding-left: var(--card-padding-x);
+                    grid-template-rows: var(--text-row-height) var(--media-row-height) var(--text-row-height);
+
                     border: var(--hashmark);
+                    overflow: hidden;
                 }
 
-                build-card > .card > .row {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-end;
+                build-card > .grid > .header {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    border-bottom: var(--hashmark);
+                }
+
+                build-card > .grid > .header > .outer {
+                    display: grid;
+                    place-items: center;
+                    height: 100%;
+                    aspect-ratio: 1 / 1;
+
+                    background:
+                        repeating-linear-gradient(
+                            -45deg,
+                            #d9d9d9 0,
+                            #d9d9d9 2px,
+                            transparent 2px,
+                            transparent 6px
+                        );
+                }
+
+                build-card > .grid > .header > .inner {
+                    display: grid;
+                    place-items: center;
+                    height: 80%;
+                    aspect-ratio: 1 / 1;
+                    background: black;
+                    border: 2px solid #111;
+                    font-size: 2rem;
+                    font-weight: 700;
+                    line-height: 1;
+                }
+
+                build-card > .grid > .header > *:not(:last-child) {
+                    border-right: var(--hashmark);
+                }
+
+                build-card > .grid > .content {
+                    display: grid;
+                    grid-template-columns: calc(var(--text-row-height) / 3) 1fr;
+                }
+
+                build-card > .grid > .content > .flair {
                     height: 100%;
                     width: 100%;
-
-                    border-bottom: var(--hashmark);
-                    padding-bottom: var(--row-spacing);
+                    border-right: var(--hashmark);
+                    background: linear-gradient(
+                        to bottom,
+                        var(--dark-cell) 0%, var(--dark-cell) 20%,
+                        var(--light-cell) 20%, var(--light-cell) 40%,
+                        var(--dark-cell) 40%, var(--dark-cell) 60%,
+                        var(--light-cell) 60%, var(--light-cell) 80%,
+                        var(--dark-cell) 80%, var(--dark-cell) 100%
+                    );
                 }
 
-                build-card > .card > .row > h1 {
-                    font-size: 36px;
-                    font-weight: 100;
-                    line-height: 0.85;
+                build-card > .grid > .metadata {
+                    display: grid;
+                    grid-template-columns: auto 1fr 1fr;
+
+                    border-top: var(--hashmark);
                 }
 
-                build-card > .card > .row > a {
-                    margin-left: auto;
-                    white-space: nowrap;
-
-                    display: inline-flex;
-                    align-items: flex-end;
-
-                    line-height: 1;
+                build-card > .grid > .metadata > *:not(:last-child) {
+                    border-right: var(--hashmark);
                 }
 
-                build-card > .card > .row > a > p {
-                    font-size: 18px;
+                build-card > .grid > .metadata > .status {
+                    display: grid;
+                    grid-template-rows: auto 1fr;
+                    height: 100%;
+                    aspect-ratio: 1 / 1;
+                    overflow: hidden;
                 }
 
-                build-card > .card > .row > a > img {
-                    width: 22px;
-                    display: block;
+                build-card > .grid > .metadata > .status > .indicator {
+                    --indicator-radius: 12px;
+
+                    place-self: center;
+                    width: var(--indicator-radius);
+                    height: var(--indicator-radius);
+                    border-radius: 50%;
+                    animation: blink 3s steps(2, start) infinite;
                 }
 
-                build-card > .card > .media {
-                    position: relative;
-                    width: 100%;
-                    padding-top: var(--row-spacing);
+                build-card > .grid > .metadata > .status > .indicator[data-state="abandoned"] {
+                    background: #d92d20;
+                    box-shadow: 0 0 10px #d92d20;
                 }
 
-                build-card > .card > .media > img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    border-radius: 2px;
+                build-card > .grid > .metadata > .status > .indicator[data-state="paused"] {
+                    background: #f5b301;
+                    box-shadow: 0 0 10px #f5b301;
                 }
 
-                build-card > .card > .media > h2 {
-                    position: absolute;
-                    right: 5%;
-                    bottom: 0;
-                    transform: translateY(var(--tag-drop));
-                    
-                    font-size: 42px;
-                    font-weight: 300;
-                    color: ${tag_color};
-                    line-height: 1;
-                    white-space: nowrap;
+                build-card > .grid > .metadata > .status > .indicator[data-state="active"] {
+                    background: #12b76a;
+                    box-shadow: 0 0 10px #12b76a;
+                }
+
+                @keyframes blink {
+                    0%, 49% {
+                        opacity: 1;
+                    }
+                    50%, 100% {
+                        opacity: 0.25;
+                    }
                 }
             </style>
-            <div class="card">
-                <div class="row">
-                    <h1>${title}</h1>
-                    <a href=${href}>
-                        <p>Explore</p>
-                        <img src="./assets/icons/arrow.svg" alt="Explore">
-                    </a>
+            <div class="grid">
+                <div class="header">
+                    <div class="outer">
+                        <div class="inner">${number}</div>
+                    </div>
+                    <div class="project">
+                            <h6>PROJECT</h6>
+                            <h4>${project}</h4>
+                    </div>
                 </div>
-                <div class="media">
-                    <img src=${image} alt=${title}>
-                    <h2>${tag}</h2>
+                <div class="content">
+                    <div class="flair"></div>
+                    <div class="media">
+                        <img src="" alt="">
+                        <div class="tag">${tag}</div>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <div class="status">
+                        <h6>STATUS</h6>
+                        <div class="indicator" data-state=${status}></div>
+                    </div>
+                    <div class="stage">
+                        <h6>STAGE</h6>
+                        <h4>${stage}</h4>
+                    </div>
+                    <div class="version">
+                        <h6>VERSION</h6>
+                        <h4>${version}</h4>
+                    </div>
                 </div>
             </div>
         `
