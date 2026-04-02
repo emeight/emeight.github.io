@@ -7,7 +7,7 @@ class BuildCard extends HTMLElement {
         const version = this.getAttribute("version") ?? "0.0.0";
         const tag = this.getAttribute("tag") ?? "Prototype";
         const details = this.getAttribute("details") ?? "I'll tell you exactly what's happening, why I oughta.";
-        const image = this.getAttribute("image") ?? "./assets/images/ironman.jpg";
+        const image = this.getAttribute("image") ?? "../assets/images/ironman.jpg";
         const href = this.getAttribute("href") ?? "#";
         const headline = this.getAttribute("headline") ?? "What's going on here?";
 
@@ -245,7 +245,7 @@ class BuildCard extends HTMLElement {
                         <h4>${tag}</h4>                        
                     </div>
                     <a href="${href}">
-                        <img src="./assets/icons/arrow.svg" alt="explore">
+                        <img src="../assets/icons/arrow.svg" alt="explore">
                     </a>
                 </div>
             </div>

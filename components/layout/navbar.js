@@ -37,8 +37,8 @@ class Navbar extends HTMLElement {
                 </div>
                 <div class=""></div>
                 <div class="links">
-                    <a href="notes.html">Notes</a>
-                    <a href="builds.html">Builds</a>
+                    <a href="/notes">Notes</a>
+                    <a href="/builds">Builds</a>
                 </div>
             </div>
         `
