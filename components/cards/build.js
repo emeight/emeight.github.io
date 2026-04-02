@@ -5,7 +5,7 @@ class BuildCard extends HTMLElement {
         const status = this.getAttribute("status") ?? "active";
         const stage = this.getAttribute("stage") ?? "Ideating";
         const version = this.getAttribute("version") ?? "0.0.0";
-        const tag = this.getAttribute("tag") ?? "";
+        const tag = this.getAttribute("tag") ?? "Prototype";
         const details = this.getAttribute("details") ?? "I'll tell you exactly what's happening, why I oughta.";
         const image = this.getAttribute("image") ?? "./assets/images/ironman.jpg";
         const href = this.getAttribute("href") ?? "#";
@@ -17,18 +17,19 @@ class BuildCard extends HTMLElement {
                     --light-cell: #fff;
                     --dark-cell: #111;
 
-                    --text-row-height: 50px;
-                    --media-row-height: 120px;
+                    --text-row-height: 40px;
+                    --media-row-height: 200px;
 
-                    --explore-col-width: 30px;
-                    --main-block-width: 300px;
+                    --explore-col-width: 40px;
+                    --main-block-width: 200px;
 
                     border: var(--hashmark);
                 }
 
                 build-card > .container {
                     display: grid;
-                    grid-template-columns: 300px 1fr var(--explore-col-width);
+                    grid-template-columns: 400px 1fr var(--explore-col-width);
+                    overflow: hidden;
                 }
 
                 build-card > .container > .grid {
@@ -70,7 +71,7 @@ class BuildCard extends HTMLElement {
                     border: var(--hashmark);
                     background: #000000;
                     color: #fefefe;
-                    font-size: 1.5rem;
+                    font-size: 1.25rem;
                     font-weight: 500;
                     line-height: 1;
                 }
@@ -123,7 +124,7 @@ class BuildCard extends HTMLElement {
 
                 build-card > .container > .grid > .metadata > .status {
                     display: grid;
-                    grid-template-rows: auto 1fr;
+                    place-items: center;
                     height: 100%;
                     aspect-ratio: 1 / 1;
                     overflow: hidden;
@@ -132,7 +133,6 @@ class BuildCard extends HTMLElement {
                 build-card > .container > .grid > .metadata > .status > .indicator {
                     --indicator-radius: 12px;
 
-                    place-self: center;
                     width: var(--indicator-radius);
                     height: var(--indicator-radius);
                     border-radius: 50%;
@@ -155,7 +155,6 @@ class BuildCard extends HTMLElement {
                 }
 
                 build-card > .container > .grid > .metadata > .status,
-                build-card > .container > .grid > .metadata > .status,
                 build-card > .container > a > .row > .title {
                     padding: 4px 8px;
                 }
@@ -172,6 +171,7 @@ class BuildCard extends HTMLElement {
                 build-card > .container > .explore > .tag {
                     writing-mode: vertical-rl;
                     transform: rotate(180deg);
+                    padding: 8px 4px;
                 }
 
                 build-card > .container > .explore > a {
@@ -183,6 +183,16 @@ class BuildCard extends HTMLElement {
 
                     border-top: var(--hashmark);
                 }
+
+                build-card > .container > .grid > .header > .project,
+                build-card > .container > .grid > .metadata > .status,
+                build-card > .container > .grid > .metadata > .version,
+                build-card > .container > .grid > .metadata > .stage,
+                build-card > .container > .explore > a,
+                build-card > .container > .overview {
+                    padding: 4px 8px;
+                }
+
 
                 @keyframes blink {
                     0%, 49% {
@@ -208,12 +218,10 @@ class BuildCard extends HTMLElement {
                         <div class="flair"></div>
                         <div class="media">
                             <img src=${image} alt=${project}>
-                            <div class="tag">${tag}</div>
                         </div>
                     </div>
                     <div class="metadata">
                         <div class="status">
-                            <h6>STATUS</h6>
                             <div class="indicator" data-state=${status}></div>
                         </div>
                         <div class="stage">
