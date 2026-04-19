@@ -1,63 +1,164 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./globals.css">
-        <link rel="stylesheet" href="./index.css">
-        <script type="module" src="./components/index.js"></script>
+        <title>Terry Emeigh</title>
+        <link rel="icon" href="./assets/logos/TT_nba.svg" sizes="any" type="image/svg+xml">
     </head>
     <body>
-        <div class="column">
-            <nav-bar></nav-bar>
-            <multi-view></multi-view>
-            <div class="info left">
-                <div class="media top">
-                    <img src="./assets/blocks/left.svg">
-                    <h1>01</h1>
+        <nav>
+            <div class="bounds">
+                <a href="/">
+                    <img src="./assets/logos/TT_blue.svg" alt="T">
+                </a>
+                <div class="links">
+                    <a href="#">Notes</a>
+                    <a href="#">Builds</a>
+                    <svg><use href="./assets/icons/theme.svg#blue"></use></svg>
                 </div>
-                <div class="content">
-                    <div class="text">
-                        <h1>About</h1>
-                        <p>Hey, I'm Terry!</p>
+            </div>
+        </nav>
+        <main class="bounds">
+            <section class="showcase">
+                <header>
+                    <h6>§ 000 — SHOWCASE</h6>
+                    <h2>Building robots one bolt at a time.</h2>
+                    <p>This is text about how robots need to be built one bolt at a time. Otherwise, they'll undergo a rapid disassembly which is neither pleasant nor entertaining to watch.</p>
+                    <div class="tags">
+                        <div class="tag">
+                            <h6>STATUS</h6>
+                            <div class="pulse"></div>
+                        </div>
+                        <div class="tag">
+                            <h6>SERIAL</h6>
+                            <p>000</p>
+                        </div>
+                        <div class="tag">
+                            <h6>VERSION</h6>
+                            <p>v1.2</p>
+                        </div>
+                        <div class="tag">
+                            <h6>PHASE</h6>
+                            <p>Prototyping</p>
+                        </div>
                     </div>
-                    <div class="links">
-                        <a href="https://www.youtube.com/@terryemeigh" target="_blank">
-                            <img src="assets/logos/youtube.svg" alt="YouTube">
-                        </a>
-                        <a href="https://www.github.com/emeight" target="_blank">
-                            <img src="assets/logos/github.svg" alt="GitHub">
-                        </a>
-                        <a href="https://www.linkedin.com/in/terryemeigh" target="_blank">
-                            <img src="assets/logos/linkedin.svg" alt="LinkedIn">
-                        </a>
-                        <a href="https://www.speedyshoes.org" target="_blank" rel="noopener">
-                            <img src="assets/logos/speedyshoes.svg" alt="SpeedyShoes">
-                        </a>
+                </header>
+                <figure>
+                    <img src="./assets/images/triakistetrahedron.png" alt="Triakis Tetrahedron">
+                    <figcaption>Fig. 01 - Genesis</figcaption>
+                </figure>
+            </section>
+            <section class="about">
+                <header>
+                    <h6>§ 001 — ABOUT</h6>
+                </header>
+                <h2>Hey, I'm Terry!</h2>
+                <p>I grew up just outside of Detroit and studied at Harvard University. Soccer and running take up most of my free time, but I also love to play the guitar, read cool books, and design new things.</p>
+                <p>This website is an ode to building.</p>
+            </section>
+            <section class="links">
+                <header>
+                    <h6>§ 002 — LINKS</h6>
+                </header>
+                <div class="rail">
+                    <a href="https://www.youtube.com/@terryemeigh" target="_blank">
+                        <svg><use href="./assets/icons/logos.svg#youtube"></use></svg>
+                    </a>
+                    <a href="https://www.github.com/emeight" target="_blank">
+                        <svg><use href="./assets/icons/logos.svg#github"></use></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/terryemeigh" target="_blank">
+                        <svg><use href="./assets/icons/logos.svg#linkedin"></use></svg>
+                    </a>
+                    <a href="https://www.speedyshoes.org" target="_blank" rel="noopener">
+                        <svg><use href="./assets/icons/logos.svg#speedyshoes"></use></svg>
+                    </a>
+                </div>
+            </section>
+            <section class="notes">
+                <header>
+                    <h6>§ 003 — NOTES</h6>
+                </header>
+                <div class="stack">
+                    <div class="note">
+                        <div class="icon">
+                            <div class="checkerboard">
+                                <div class="filled"></div>
+                                <div></div>
+                                <div class="filled"></div>
+                                <div></div>
+                                <div class="filled"></div>
+                                <div></div>
+                                <div class="filled"></div>
+                                <div></div>
+                                <div class="filled"></div>
+                            </div>
+                            <p>000</p>
+                        </div>
+                        <div class="info">
+                            <h6>THOUGHTS</h6>
+                            <h2>Attempting to Write Something Sensical</h2>
+                            <p>An exploration of coherence under pressure.</p>
+                        </div>
+                        <div class="extra">
+                            <div class="date">April 17th, 2026</div>
+                            <svg><use href="./assets/icons/arrows.svg#arrow-right"/></svg>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="info right">
-                <div class="text">
-                    <h1>Notes</h1>
-                    <p>Organization of thoughts.</p>
+            </section>
+            <section class="builds">
+                <header>
+                    <h6>§ 004 — BUILDS</h6>
+                </header>
+                <div class="grid">
+                    <div class="build">
+                        <div class="sidebar">
+                            <div class="serial"><p>000</p></div>
+                        </div>
+                        <div class="content">
+                            <div class="media">
+                                <img src="./assets/vectors/cube.svg" alt="Cube">
+                            </div>
+                            <div class="details">
+                                <div class="primary">
+                                    <div class="title">
+                                        <h2>0x4d30</h2>
+                                    </div>
+                                    <div class="tags">
+                                        <h4>Robotics</h4>
+                                        <div class="version"><p>v0.0.0</p></div>
+                                    </div>
+                                </div>
+                                <div class="metadata">
+                                    <div class="status">
+                                        <div class="pulse"></div>
+                                    </div>
+                                    <div class="phase">
+                                        <p>Prototyping</p>
+                                    </div>
+                                    <div class="date">
+                                        <p>April 18th, 2026</p>
+                                    </div>
+                                    <div class="more">
+                                        <svg><use href="./assets/icons/arrows.svg#arrow-right"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="media middle">
-                    <img src="./assets/blocks/middle.svg">
-                    <h1>02</h1>
+            </section>
+            <footer>
+                <div class="copyright">
+                    <p>Detroit, Michigan</p>
+                    <p>© 2026, All Rights Reserved</p>
                 </div>
-            </div>
-            <div class="info left">
-                <div class="media bottom">
-                    <img src="./assets/blocks/right.svg">
-                    <h1>03</h1>
-                </div>
-                <div class="text">
-                    <h1>Builds</h1>
-                    <p>Fashioned together with duct tape.</p>
-                </div>
-            </div>
-            <div class="footer">
-                <p>Made in Detroit.</p>
-            </div>
-        </div>
+                <h1 class="engraved">Terry Emeigh</h1>
+            </footer>
+        </main>
     </body>
 </html>

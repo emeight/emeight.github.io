@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <symbol id="light" viewBox="0 0 36 36">
+    <rect x="6" y="10" width="24" height="16" rx="3" fill="#b0b0b0"/>
+    <rect x="6" y="10" width="16" height="16" rx="3" fill="#d8d8d8"/>
+    <rect x="6" y="10" width="8"  height="16" rx="3" fill="#ffffff"/>
+  </symbol>
+
+  <symbol id="dark" viewBox="0 0 36 36">
+    <rect x="6" y="10" width="24" height="16" rx="3" fill="#080810"/>
+    <rect x="6" y="10" width="16" height="16" rx="3" fill="#1a1a28"/>
+    <rect x="6" y="10" width="8"  height="16" rx="3" fill="#2a2a3a"/>
+  </symbol>
+
+  <symbol id="blue" viewBox="0 0 36 36">
+    <rect x="6" y="10" width="24" height="16" rx="3" fill="#1e3a6e"/>
+    <rect x="6" y="10" width="16" height="16" rx="3" fill="#3b72d4"/>
+    <rect x="6" y="10" width="8"  height="16" rx="3" fill="#7db3f8"/>
+  </symbol>
+
+</svg>
