@@ -6,13 +6,72 @@
         <script type="module" src="../components/index.js"></script>
     </head>
     <body>
-        <div class="column">
-            <nav-bar toggle="builds"></nav-bar>
-            <h1>Builds</h1>
-            <p>"What I cannot create, I do not understand." -Richard Feynman</p>
-            <div class="builds">
-                <build-card></build-card>
+        <nav>
+            <div class="bounds">
+                <a href="/">
+                    <img src="../assets/logos/TT_blue.svg" alt="T">
+                </a>
+                <div class="links">
+                    <a href="/notes">Notes</a>
+                    <a href="/builds">Builds</a>
+                    <svg><use href="../assets/icons/theme.svg#blue"></use></svg>
+                </div>
             </div>
-        </div>
+        </nav>
+        <main class="bounds">
+            <section>
+                <header>
+                    <h6>§ 004 — BUILDS</h6>
+                    <h4>All Builds</h4>
+                    <p>"What I cannot create, I do not understand." -Richard Feynman</p>
+                </header>
+            </section>
+            <section class="builds">
+                <div class="grid">
+                    <div class="build">
+                        <div class="sidebar">
+                            <div class="serial"><p>000</p></div>
+                        </div>
+                        <div class="content">
+                            <div class="media">
+                                <img src="../assets/vectors/cube.svg" alt="Cube">
+                            </div>
+                            <div class="details">
+                                <div class="primary">
+                                    <div class="title">
+                                        <h2>0x4d30</h2>
+                                    </div>
+                                    <div class="tags">
+                                        <h4>Robotics</h4>
+                                        <div class="version"><p>v0.0.0</p></div>
+                                    </div>
+                                </div>
+                                <div class="metadata">
+                                    <div class="status">
+                                        <div class="pulse"></div>
+                                    </div>
+                                    <div class="phase">
+                                        <p>Prototyping</p>
+                                    </div>
+                                    <div class="date">
+                                        <p>November 18th, 2025</p>
+                                    </div>
+                                    <div class="more">
+                                        <svg><use href="../assets/icons/arrows.svg#arrow-right"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <div class="copyright">
+                    <p>Detroit, Michigan</p>
+                    <p>© 2026, All Rights Reserved</p>
+                </div>
+                <h1 class="engraved">Terry Emeigh</h1>
+            </footer>
+        </main>
     </body>
 </html>
