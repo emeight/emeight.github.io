@@ -1,5 +1,10 @@
-use parser::block_parser;
+use parser::to_html;
+use std::io::{self, Read};
 
 fn main() {
-    print!("{}", block_parser("```\nlet x = 1;\n```"));
+    let mut input = String::new();
+    io::stdin()
+        .read_to_string(&mut input)
+        .expect("failed to read stdin");
+    print!("{}", to_html(&input));
 }

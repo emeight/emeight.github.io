@@ -1,71 +1,96 @@
-pub fn block_parser(markdown: &str) -> String {
-    let mut html = String::new();
+mod ast;
+mod block;
+mod inline;
+mod render;
 
-    // state trackers
-    let mut in_paragraph = false;
-    let mut in_list = false;
-    let mut in_code_block = false;
+pub use ast::{Block, Inline};
 
-    for line in markdown.lines() {
-        let trimmed = line.trim();
-
-        // code blocks break markdown rules, handle first
-        if trimmed.starts_with("```") {
-            if in_code_block {
-                if html.ends_with('\n') {
-                    html.pop();
-                }
-                html.push_str("</code></pre>\n");
-                in_code_block = false;
-            } else {
-                // close paragraph/list before starting code (if inside of them)
-                if in_paragraph { html.push_str("</p>\n"); in_paragraph = false; }
-                if in_list { html.push_str("</ul>\n"); in_list = false; }
-
-                // do not push a new line here to prevent ghost spacing (empty lines)
-                html.push_str("<pre><code>");
-                in_code_block = true;
-            }
-            continue;
-        }
-
-        // if already in code block, push raw text
-        if in_code_block {
-            html.push_str(line);
-            html.push_str("\n");
-            continue;
-        }
-
-        // empty lines
-        if trimmed.is_empty() {
-            if in_paragraph { html.push_str("</p>\n"); in_paragraph = false; }
-            if in_list { html.push_str("</ul>\n"); in_list = false; }
-            continue;
-        }
-    }
-
-    // clean up
-    if in_paragraph { html.push_str("</p>\n"); }
-    if in_list { html.push_str("</ul>\n"); }
-    if in_code_block { html.push_str("</code></pre>\n"); }
-
-    html
+/// Convert markdown to html
+pub fn to_html(markdown: &str) -> String {
+    let blocks = block::parse_blocks(markdown);
+    render::render(&blocks)
 }
-
-// fn inline_parser(markdown: &str) -> String {}
-
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_parse_header_h1() {
-        assert_eq!(block_parser("# Header"), "<h1>Header</h1>")
+    fn heading_h1() {
+        assert_eq!(to_html("# Header"), "<h1>Header</h1>\n");
     }
 
     #[test]
-    fn test_parse_code() {
-        assert_eq!(block_parser("```\nlet x = 1;\n```"), "<pre><code>let x = 1;</code></pre>\n")
+    fn heading_levels_and_no_space_is_paragraph() {
+        assert_eq!(to_html("### Deep"), "<h3>Deep</h3>\n");
+        assert_eq!(to_html("#no space"), "<p>#no space</p>\n");
+        assert_eq!(to_html("####### too deep"), "<p>####### too deep</p>\n");
+    }
+
+    #[test]
+    fn code_block_is_escaped() {
+        assert_eq!(
+            to_html("```\nlet x = 1;\n```"),
+            "<pre><code>let x = 1;\n</code></pre>\n"
+        );
+        assert_eq!(
+            to_html("```rust\n<T>\n```"),
+            "<pre><code class=\"language-rust\">&lt;T&gt;\n</code></pre>\n"
+        );
+    }
+
+    #[test]
+    fn paragraphs_split_on_blank_line() {
+        assert_eq!(to_html("a\nb\n\nc"), "<p>a\nb</p>\n<p>c</p>\n");
+    }
+
+    #[test]
+    fn inline_formatting() {
+        assert_eq!(
+            to_html("a **b** *c* `d`"),
+            "<p>a <strong>b</strong> <em>c</em> <code>d</code></p>\n"
+        );
+    }
+
+    #[test]
+    fn link_and_image() {
+        assert_eq!(
+            to_html("[x](http://e.com)"),
+            "<p><a href=\"http://e.com\">x</a></p>\n"
+        );
+        assert_eq!(
+            to_html("![alt](a.png)"),
+            "<p><img src=\"a.png\" alt=\"alt\"></p>\n"
+        );
+    }
+
+    #[test]
+    fn unordered_and_ordered_lists() {
+        assert_eq!(
+            to_html("- a\n- b"),
+            "<ul>\n<li>a</li>\n<li>b</li>\n</ul>\n"
+        );
+        assert_eq!(
+            to_html("1. a\n2. b"),
+            "<ol>\n<li>a</li>\n<li>b</li>\n</ol>\n"
+        );
+    }
+
+    #[test]
+    fn blockquote_nests_blocks() {
+        assert_eq!(
+            to_html("> quoted\n> text"),
+            "<blockquote>\n<p>quoted\ntext</p>\n</blockquote>\n"
+        );
+    }
+
+    #[test]
+    fn thematic_break() {
+        assert_eq!(to_html("---"), "<hr>\n");
+    }
+
+    #[test]
+    fn text_is_escaped() {
+        assert_eq!(to_html("a < b & c"), "<p>a &lt; b &amp; c</p>\n");
     }
 }
