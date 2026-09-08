@@ -1,0 +1,36 @@
+<!-- build card component -->
+<a class="build" href="/builds/{{slug}}">
+    <div class="sidebar">
+        <div class="serial"><p>{{serial}}</p></div>
+    </div>
+    <div class="content">
+        <div class="media">
+            <img src="{{image}}" alt="{{image_alt}}">
+        </div>
+        <div class="details">
+            <div class="primary">
+                <div class="title">
+                    <h2>{{title}}</h2>
+                </div>
+                <div class="tags">
+                    <h4>{{kicker}}</h4>
+                    <div class="version"><p>{{version}}</p></div>
+                </div>
+            </div>
+            <div class="metadata">
+                <div class="status">
+                    <div class="pulse"></div>
+                </div>
+                <div class="phase">
+                    <p>{{phase}}</p>
+                </div>
+                <div class="date">
+                    <p>{{date}}</p>
+                </div>
+                <div class="more">
+                    <svg><use href="/assets/icons/arrows.svg#arrow-right"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

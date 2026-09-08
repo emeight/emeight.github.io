@@ -1,4 +1,4 @@
-/// abstract syntax tree (node types)
+//! abstract syntax tree (node types)
 
 #[derive(Debug, PartialEq)]
 pub enum Block {

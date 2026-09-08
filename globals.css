@@ -6,6 +6,8 @@
 
     --hashmark: 1px solid rgba(255,255,255,0.08);
 
+    --radius: 3px;
+
     --nav-height: 42px;
     --text-gap: 1.25em;
 
@@ -42,12 +44,6 @@
 
 a,
 a:visited {
-    color: inherit;
-    text-decoration: none;
-}
-
-a:hover,
-a:active {
     color: inherit;
     text-decoration: none;
 }
@@ -188,7 +184,7 @@ main > section > figure {
     width: 100%;
     background: var(--figure-bg);
     border: var(--hashmark);
-    border-radius: 3px;
+    border-radius: var(--radius);
 }
 
 main > section > figure > img {
@@ -321,56 +317,53 @@ main > .notes > .stack {
     gap: var(--text-gap);
 }
 
-main > .notes > .stack > .note {
+main > .notes .note {
     display: grid;
     grid-template-columns: auto 1fr auto ;
 }
 
-main > .notes > .stack > .note > .icon {
+main > .notes .note > .icon,
+main > .notes .note > .info,
+main > .notes .note > .extra {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
+}
+
+main > .notes .note > .icon {
     align-items: center;
     justify-content: center;
 }
 
-main > .notes > .stack > .note > .icon > p {
-    color: var(--muted-color);
-    padding-top: 4px;
-}
-
-main > .notes > .stack > .note > .info {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+main > .notes .note > .info {
     padding-inline: var(--text-gap);
     gap: calc(var(--text-gap) / 2);
 }
 
-main > .notes > .stack > .note > .info > h6 {
+main > .notes .note > .extra {
+    align-items: end;
+    justify-content: center;
+    gap: var(--text-gap);
+}
+
+main > .notes .note > .icon > p {
+    color: var(--muted-color);
+    padding-top: 4px;
+}
+
+main > .notes .note .info > h6 {
     color: var(--accent-color);
     font-size: var(--text-kicker);
 }
 
-main > .notes > .stack > .note > .extra {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    gap: var(--text-gap);
-}
-
-main > .notes > .stack > .note > .info > p,
-main > .notes > .stack > .note > .extra > .date, svg {
+main > .notes .note .info > p,
+main > .notes .note .extra > .date {
     color: var(--muted-color);
     font-size: var(--text-label);
 }
 
-main > .notes > .stack > .note > .extra > svg {
+main > .notes .note .extra > svg {
     height: 20px;
     aspect-ratio: 1 / 1;
 }
@@ -380,7 +373,7 @@ main > .notes > .stack > .note > .extra > svg {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     border: var(--hashmark);
-    border-radius: 3px;
+    border-radius: var(--radius);
 }
 
 .checkerboard > * {
@@ -402,39 +395,39 @@ main > .builds > .grid {
     grid-template-columns: repeat(4, 1fr);
 }
 
-main > .builds > .grid > .build {
+main > .builds .build {
     display: grid;
     grid-template-columns: auto 1fr;
     background: var(--figure-bg);
     border: var(--hashmark);
-    border-radius: 3px;
+    border-radius: var(--radius);
 }
 
-main > .builds > .grid > .build > .sidebar {
+main > .builds .build > .sidebar {
     display: flex;
     align-items: center;
     writing-mode: vertical-rl;
     padding: 12px 8px;
 }
 
-main > .builds > .grid > .build > .sidebar > .serial > p {
+main > .builds .build .serial > p {
     color: var(--muted-color);
 }
 
-main > .builds > .grid > .build > .content {
+main > .builds .build > .content {
     display: grid;
     grid-template-rows: repeat(2, auto);
     border-left: var(--hashmark);
 }
 
-main > .builds > .grid > .build > .content > .media {
+main > .builds .build .media {
     display: block;
     height: 240px;
     aspect-ratio: 3 / 2;
     border-bottom: var(--hashmark);
 }
 
-main > .builds > .grid > .build > .content > .media > img {
+main > .builds .build .media > img {
     display: block;
     margin: auto;
     height: 100%;
@@ -444,35 +437,35 @@ main > .builds > .grid > .build > .content > .media > img {
     filter: invert(1);
 }
 
-main > .builds > .grid > .build > .content > .details {
+main > .builds .build .details {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-main > .builds > .grid > .build > .content > .details h4 {
+main > .builds .build .details h4 {
     color: var(--accent-color);
 }
 
-main > .builds > .grid > .build > .content > .details p {
+main > .builds .build .details p {
     color: var(--muted-color);
 } 
 
-main > .builds > .grid > .build > .content > .details > .primary {
+main > .builds .build .primary {
     display: flex;
     flex-direction: column;
     padding: var(--padding-y) var(--padding-x);
     gap: calc(var(--text-gap) / 3);
 }
 
-main > .builds > .grid > .build > .content > .details > .primary > .tags {
+main > .builds .build .primary > .tags {
     display: flex;
     flex-direction: row;
     align-items: end;
     gap: var(--text-gap);
 }
 
-main > .builds > .grid > .build > .content > .details > .metadata {
+main > .builds .build .metadata {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -482,12 +475,12 @@ main > .builds > .grid > .build > .content > .details > .metadata {
     padding: var(--padding-y) var(--padding-x);
 }
 
-main > .builds > .grid > .build > .content > .details > .metadata > .more {
+main > .builds .build .metadata > .more {
     display: flex;
     margin-left: auto;
 }
 
-main > .builds > .grid > .build > .content > .details > .metadata > .more > svg {
+main > .builds .build .metadata > .more > svg {
     display: flex;
     height: 18px;
     aspect-ratio: 1 / 1;
@@ -521,3 +514,68 @@ main > .builds > .grid > .build > .content > .details > .metadata > .more > svg 
         font-size: 64px;
     }
 }
+
+/* ARTICLE PAGES (generated) */
+main > :is(.note, .build) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+    padding: calc(var(--padding-y) * 4) var(--padding-x);
+}
+
+main > :is(.note, .build) > header {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--text-gap) / 2);
+    padding-bottom: calc(var(--text-gap) * 1.5);
+    margin-bottom: calc(var(--text-gap) * 1.5);
+    border-bottom: var(--hashmark);
+}
+
+main > :is(.note, .build) > header > h6 { color: var(--accent-color); }
+main > :is(.note, .build) > header > .date { color: var(--muted-color); }
+
+main > :is(.note, .build) > header > .build-meta {
+    display: flex;
+    gap: var(--text-gap);
+    color: var(--muted-color);
+    font-size: var(--text-sm);
+}
+
+.prose { display: flex; flex-direction: column; gap: var(--text-gap); }
+.prose a { color: var(--accent-color); text-decoration: underline; }
+.prose img { max-width: 100%; border: var(--hashmark); border-radius: var(--radius); }
+
+.prose ul, .prose ol {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--text-gap) / 3);
+    padding-left: var(--text-gap);
+}
+
+.prose blockquote {
+    margin: 0;
+    padding-left: var(--text-gap);
+    border-left: 2px solid var(--muted-color);
+    color: var(--muted-color);
+}
+
+.prose code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.9em;
+    background: var(--figure-bg);
+    padding: 1px 5px;
+    border-radius: var(--radius);
+}
+
+.prose pre {
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+    padding: var(--padding-x);
+    overflow-x: auto;
+}
+
+.prose pre code { background: none; padding: 0; }

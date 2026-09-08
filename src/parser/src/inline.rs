@@ -1,4 +1,4 @@
-/// text span to Vec<Inline>
+//! text span to Vec<Inline>
 
 use crate::ast::Inline;
 

@@ -3,6 +3,9 @@ mod block;
 mod inline;
 mod render;
 
+pub mod frontmatter;
+pub mod site;
+
 pub use ast::{Block, Inline};
 
 /// Convert markdown to html

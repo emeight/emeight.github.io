@@ -1,4 +1,4 @@
-/// Vec<Block> to HTML string (escaping)
+//! Vec<Block> to HTML string (escaping)
 
 use crate::ast::{Block, Inline};
 
@@ -26,7 +26,7 @@ fn render_block(block: &Block, out: &mut String) {
             match lang {
                 Some(l) => out.push_str(&format!(
                     "<pre><code class=\"language-{}\">",
-                    escape_attr(l)
+                    escape_html(l)
                 )),
                 None => out.push_str("<pre><code>"),
             }
@@ -86,15 +86,15 @@ fn render_inline(item: &Inline, out: &mut String) {
             out.push_str("</code>");
         }
         Inline::Link { href, text } => {
-            out.push_str(&format!("<a href=\"{}\">", escape_attr(href)));
+            out.push_str(&format!("<a href=\"{}\">", escape_html(href)));
             render_inlines(text, out);
             out.push_str("</a>");
         }
         Inline::Image { src, alt } => {
             out.push_str(&format!(
                 "<img src=\"{}\" alt=\"{}\">",
-                escape_attr(src),
-                escape_attr(alt)
+                escape_html(src),
+                escape_html(alt)
             ));
         }
     }
@@ -113,7 +113,7 @@ fn escape(s: &str) -> String {
     out
 }
 
-fn escape_attr(s: &str) -> String {
+pub(crate) fn escape_html(s: &str) -> String {
     let mut out = String::with_capacity(s.len());
     for c in s.chars() {
         match c {

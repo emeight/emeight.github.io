@@ -1,4 +1,4 @@
-/// markdown to Vec<Block>
+//! markdown to Vec<Block>
 
 use crate::ast::Block;
 use crate::inline::parse_inline;
