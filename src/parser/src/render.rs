@@ -1,6 +1,6 @@
 //! Vec<Block> to HTML string (escaping)
 
-use crate::ast::{Block, Inline};
+use crate::ast::{Alignment, Block, Inline};
 
 pub fn render(blocks: &[Block]) -> String {
     let mut out = String::new();
@@ -12,15 +12,25 @@ pub fn render(blocks: &[Block]) -> String {
 
 fn render_block(block: &Block, out: &mut String) {
     match block {
-        Block::Heading { level, content } => {
-            out.push_str(&format!("<h{level}>"));
+        Block::Heading { level, id, content } => {
+            out.push_str(&format!("<h{level} id=\"{}\">", escape_html(id)));
             render_inlines(content, out);
             out.push_str(&format!("</h{level}>\n"));
         }
         Block::Paragraph(content) => {
-            out.push_str("<p>");
-            render_inlines(content, out);
-            out.push_str("</p>\n");
+            if let [Inline::Image { alt, .. }] = content.as_slice() {
+                out.push_str("<figure>\n");
+                render_inlines(content, out);
+                out.push('\n');
+                if !alt.is_empty() {
+                    out.push_str(&format!("<figcaption>{}</figcaption>\n", escape_html(alt)));
+                }
+                out.push_str("</figure>\n");
+            } else {
+                out.push_str("<p>");
+                render_inlines(content, out);
+                out.push_str("</p>\n");
+            }
         }
         Block::CodeBlock { lang, text } => {
             match lang {
@@ -48,8 +58,39 @@ fn render_block(block: &Block, out: &mut String) {
             out.push_str(&render(inner));
             out.push_str("</blockquote>\n");
         }
+        Block::Table { alignments, headers, rows } => {
+            out.push_str("<table>\n<thead>\n<tr>\n");
+            for (idx, cell) in headers.iter().enumerate() {
+                render_table_cell("th", align_of(alignments, idx), cell, out);
+            }
+            out.push_str("</tr>\n</thead>\n<tbody>\n");
+            for row in rows {
+                out.push_str("<tr>\n");
+                for (idx, cell) in row.iter().enumerate() {
+                    render_table_cell("td", align_of(alignments, idx), cell, out);
+                }
+                out.push_str("</tr>\n");
+            }
+            out.push_str("</tbody>\n</table>\n");
+        }
         Block::ThematicBreak => out.push_str("<hr>\n"),
     }
+}
+
+fn align_of(alignments: &[Alignment], idx: usize) -> Alignment {
+    alignments.get(idx).copied().unwrap_or(Alignment::None)
+}
+
+fn render_table_cell(tag: &str, align: Alignment, content: &[Inline], out: &mut String) {
+    let style = match align {
+        Alignment::Left => " style=\"text-align:left\"",
+        Alignment::Center => " style=\"text-align:center\"",
+        Alignment::Right => " style=\"text-align:right\"",
+        Alignment::None => "",
+    };
+    out.push_str(&format!("<{tag}{style}>"));
+    render_inlines(content, out);
+    out.push_str(&format!("</{tag}>\n"));
 }
 
 /// A list item that is exactly one paragraph renders its inline content

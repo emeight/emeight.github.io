@@ -6,7 +6,7 @@ mod render;
 pub mod frontmatter;
 pub mod site;
 
-pub use ast::{Block, Inline};
+pub use ast::{Alignment, Block, Inline};
 
 /// Convert markdown to html
 pub fn to_html(markdown: &str) -> String {
@@ -20,12 +20,12 @@ mod tests {
 
     #[test]
     fn heading_h1() {
-        assert_eq!(to_html("# Header"), "<h1>Header</h1>\n");
+        assert_eq!(to_html("# Header"), "<h1 id=\"header\">Header</h1>\n");
     }
 
     #[test]
     fn heading_levels_and_no_space_is_paragraph() {
-        assert_eq!(to_html("### Deep"), "<h3>Deep</h3>\n");
+        assert_eq!(to_html("### Deep"), "<h3 id=\"deep\">Deep</h3>\n");
         assert_eq!(to_html("#no space"), "<p>#no space</p>\n");
         assert_eq!(to_html("####### too deep"), "<p>####### too deep</p>\n");
     }
@@ -63,7 +63,15 @@ mod tests {
         );
         assert_eq!(
             to_html("![alt](a.png)"),
-            "<p><img src=\"a.png\" alt=\"alt\"></p>\n"
+            "<figure>\n<img src=\"a.png\" alt=\"alt\">\n<figcaption>alt</figcaption>\n</figure>\n"
+        );
+    }
+
+    #[test]
+    fn anchor_link_targets_heading_id() {
+        assert_eq!(
+            to_html("# My Section\n\n[jump](#my-section)"),
+            "<h1 id=\"my-section\">My Section</h1>\n<p><a href=\"#my-section\">jump</a></p>\n"
         );
     }
 
@@ -84,6 +92,14 @@ mod tests {
         assert_eq!(
             to_html("> quoted\n> text"),
             "<blockquote>\n<p>quoted\ntext</p>\n</blockquote>\n"
+        );
+    }
+
+    #[test]
+    fn table_with_alignment() {
+        assert_eq!(
+            to_html("| A | B |\n| :-- | --: |\n| 1 | 2 |"),
+            "<table>\n<thead>\n<tr>\n<th style=\"text-align:left\">A</th>\n<th style=\"text-align:right\">B</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left\">1</td>\n<td style=\"text-align:right\">2</td>\n</tr>\n</tbody>\n</table>\n"
         );
     }
 

@@ -1,6 +1,6 @@
 //! markdown to Vec<Block>
 
-use crate::ast::Block;
+use crate::ast::{Alignment, Block};
 use crate::inline::parse_inline;
 
 pub fn parse_blocks(md: &str) -> Vec<Block> {
@@ -48,6 +48,7 @@ fn parse_lines<'a>(lines: &[&'a str]) -> Vec<Block> {
             flush_para(&mut para, &mut blocks);
             blocks.push(Block::Heading {
                 level,
+                id: slugify(content),
                 content: parse_inline(content),
             });
             i += 1;
@@ -92,6 +93,33 @@ fn parse_lines<'a>(lines: &[&'a str]) -> Vec<Block> {
             continue;
         }
 
+        // tables: a header row immediately followed by a `---|---` delimiter row
+        if trimmed.contains('|') {
+            if let Some(delim) = lines.get(i + 1) {
+                if is_table_delimiter_row(delim.trim()) {
+                    flush_para(&mut para, &mut blocks);
+                    let headers = split_table_row(trimmed)
+                        .into_iter()
+                        .map(parse_inline)
+                        .collect();
+                    let alignments = parse_alignments(delim.trim());
+                    i += 2;
+                    let mut rows = Vec::new();
+                    while i < lines.len() && lines[i].trim().contains('|') {
+                        rows.push(
+                            split_table_row(lines[i].trim())
+                                .into_iter()
+                                .map(parse_inline)
+                                .collect(),
+                        );
+                        i += 1;
+                    }
+                    blocks.push(Block::Table { alignments, headers, rows });
+                    continue;
+                }
+            }
+        }
+
         // all else is paragraph text
         para.push(trimmed);
         i += 1;
@@ -115,6 +143,19 @@ fn parse_heading(line: &str) -> Option<(u8, &str)> {
     }
     let rest = line[hashes..].strip_prefix(' ')?;
     Some((hashes as u8, rest.trim_end()))
+}
+
+/// Lowercase, alphanumeric-and-hyphen id so `[text](#slug)` has something to scroll to.
+fn slugify(s: &str) -> String {
+    let mut out = String::new();
+    for c in s.chars() {
+        if c.is_alphanumeric() {
+            out.push(c.to_ascii_lowercase());
+        } else if !out.is_empty() && !out.ends_with('-') {
+            out.push('-');
+        }
+    }
+    out.trim_end_matches('-').to_string()
 }
 
 fn is_thematic_break(line: &str) -> bool {
@@ -143,4 +184,34 @@ fn list_marker(line: &str) -> Option<(bool, &str)> {
         }
     }
     None
+}
+
+/// Split a `| a | b |` row into trimmed cell strings, dropping the outer pipes.
+fn split_table_row(line: &str) -> Vec<&str> {
+    let line = line.trim();
+    let line = line.strip_prefix('|').unwrap_or(line);
+    let line = line.strip_suffix('|').unwrap_or(line);
+    line.split('|').map(str::trim).collect()
+}
+
+/// A GFM table delimiter row: cells made only of `-`, optionally `:`-wrapped for alignment.
+fn is_table_delimiter_row(line: &str) -> bool {
+    let cells = split_table_row(line);
+    !cells.is_empty()
+        && cells.iter().all(|c| {
+            let c = c.trim_start_matches(':').trim_end_matches(':');
+            !c.is_empty() && c.bytes().all(|b| b == b'-')
+        })
+}
+
+fn parse_alignments(delim: &str) -> Vec<Alignment> {
+    split_table_row(delim)
+        .iter()
+        .map(|c| match (c.starts_with(':'), c.ends_with(':')) {
+            (true, true) => Alignment::Center,
+            (true, false) => Alignment::Left,
+            (false, true) => Alignment::Right,
+            (false, false) => Alignment::None,
+        })
+        .collect()
 }
