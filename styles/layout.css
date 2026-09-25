@@ -61,6 +61,7 @@ main > footer {
     padding: var(--padding-y) var(--padding-x);
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: clamp(42px, 4vw, 96px);
 }
 
@@ -83,6 +84,6 @@ main > footer > .engraved {
         gap: 12px;
     }
     main > footer > .engraved {
-        font-size: 64px;
+        font-size: clamp(40px, 11vw, 64px);
     }
 }
