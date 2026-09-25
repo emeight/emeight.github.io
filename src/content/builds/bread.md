@@ -12,9 +12,10 @@ phase: Prototyping
 ## Loaf Log
 All loaves are logged here for reference.
 
-| Serial | Date       | Rating | Notes                |
-| ------ | ---------- | ------ | -------------------- |
-| 0001   | 09-07-2026 | 0      | Basically beer cake. |
+| Serial                       | Date       | Rating | Notes                |
+| ---------------------------- | ---------- | ------ | -------------------- |
+| [0001](#september-7th-2026)  | 09-07-2026 | 0      | Basically beer cake. |
+| [0002](#september-19th-2026) | 09-19-2026 | 0.5    | Marginally better.   |
 
 ## Loaves
 All loaves baked in pursuit of bread greatness.
@@ -31,12 +32,12 @@ Mixed these together then let sit for 20 minutes.
 - Water, 350g
 - Sugar, 30g
 - Honey, 2 tbsp
-- Instant Dry Yeast, 2 tbsp
-- Dark Rye Flour, 300g
+- Instant dry yeast, 2 tbsp
+- Dark rye flour, 300g
 
 Combined the above with the following after it had sat.
 - Salt, 2 tbsp
-- White Flour, 100g 
+- White flour, 100g 
 - Buttermilk, 220g
 - Weihenstephaner Hefe Weissbier, half bottle
 
@@ -49,7 +50,39 @@ Baked at 400°F for 35 minutes then let it sit on the counter top in the pan for
 #### Result
 I knew it was going to be rough because the dough was too wet to even knead. Basically a malformed banana bread that tasted a little sour.
 
-![rye_0001_slice](/assets/images/bread/rye_0001_slice.png)
+![#0001 SLICE](/assets/images/bread/rye_0001_slice.png)
 
-#### Lookahead
+#### Notes
 The dough was way too wet, need to cut back on the liquids (probably no beer next time).
+
+### September 19th, 2026
+Redemption
+
+> After a lackluster initial loaf, I went looking for redemption.
+
+My entire aim here was to make a dough, not soup.
+
+#### Recipe Changes
+Surgical changes to the previous recipe.
+
+Measured out the honey this time by oiling up a spoon then weighing it.
+| Ingredient        | Previous | Revised |
+| ----------------- | -------- | ------- |
+| Instant dry yeast | 2 tbsp   | 10g     |
+| Honey             | 2 tbsp   | 10g     |
+| Buttermilk        | 220g     | 180g    |
+
+After the buttermilk turned my dough into soup, I threw in the following ingredients to remedy the situation.
+- Rye flour, 200g
+- White flour, 100g
+- Brown sugar, 20g
+
+Extracted and baked 800g of the final mixture.
+
+#### Result
+Way too dense, the buttermilk was the bane of this attempt. I added flour until it seemed like dough but this still wasn't a crowd pleaser. It yielded some very mediocre toast.
+
+![#0002 LOAF](/assets/images/bread/rye_0002_loaf.jpg)
+
+#### Notes
+Next time I'm going to cut the buttermilk way down, subsitute the sugar for brown sugar, and let it rise for longer.
