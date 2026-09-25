@@ -62,7 +62,7 @@ main > .links > header {
 
 main > .links > .rail {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     overflow: hidden;
     border-top: var(--hashmark);
 }
@@ -82,7 +82,7 @@ main > .links > .rail > a:not(:last-child) {
 main > .links > .rail > a > svg {
     width: 50%;
     aspect-ratio: 1 / 1;
-    min-width: 96px;
+    min-width: min(96px, 100%);
     max-width: 144px;
     padding: var(--padding-y) var(--padding-x);
     fill: currentColor;
