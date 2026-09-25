@@ -67,43 +67,14 @@ main > :is(.note, .build) > header > .build-meta {
 .prose li { line-height: 1.5; }
 .prose li::marker { color: var(--muted-color); }
 
-/* images: match figures */
-.prose img {
+/* inline images (an image alone on its line becomes a <figure>, see components.css) */
+.prose :not(figure) > img {
     display: block;
     width: 100%;
     height: auto;
     background: var(--figure-bg);
     border: var(--hashmark);
     border-radius: var(--radius);
-}
-
-/* figures (wrap images) */
-.prose figure {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    width: 100%;
-    background: var(--figure-bg);
-    border: var(--hashmark);
-    border-radius: var(--radius);
-}
-
-.prose figure > img {
-    display: block;
-    width: 100%;
-    height: auto;
-    padding: 18px;
-    background: none;
-    border: none;
-}
-
-.prose figure > figcaption {
-    display: flex;
-    margin-right: auto;
-    width: 100%;
-    align-items: center;
-    padding: var(--padding-y) var(--padding-x);
-    color: var(--muted-color);
-    border-top: var(--hashmark);
 }
 
 /* tables: match figures and showcase tags */

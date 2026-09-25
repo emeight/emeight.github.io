@@ -36,33 +36,10 @@ main > .showcase > header > .tags > .tag > .pulse {
     margin-left: 12px;
 }
 
-main > section > figure {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    width: 100%;
-    background: var(--figure-bg);
-    border: var(--hashmark);
-    border-radius: var(--radius);
-}
-
+/* box and caption come from the figure component (components.css) */
 main > section > figure > img {
-    display: block;
-    object-fit: contain;
-    align-self: center;
-    justify-self: center;
-    width: 100%;
     height: 250px;
-    padding: 8px;
-}
-
-main > section > figure > figcaption {
-    display: flex;
-    margin-right: auto;
-    width: 100%;
-    align-items: center;
-    padding: var(--padding-y) var(--padding-x);
-    color: var(--muted-color);
-    border-top: var(--hashmark);
+    object-fit: contain;
 }
 
 main > .about {
