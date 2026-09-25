@@ -70,12 +70,20 @@ main > section > .pagination:has(+ [data-paginate]) {
 main > section > [data-paginate] ~ .pagination {
     justify-content: center;
     border-top: var(--hashmark);
-    margin-top: var(--padding-y);
+    border-bottom: none;   /* the footer's top line closes it */
+    margin-top: auto;      /* sits on the footer when the list is short */
     margin-bottom: calc(var(--padding-y) * -3);
 }
 
-/* drop bottom border */
+main > section > [data-paginate]:has(~ .pagination) {
+    margin-bottom: var(--padding-y);
+}
+
+/* drop bottom border; fill the space down to the footer */
 main > section:has(> [data-paginate] ~ .pagination) {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     border-bottom: none;
 }
 

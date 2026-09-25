@@ -54,10 +54,16 @@ main > section > header > h6 {
     color: var(--accent-color);
 }
 
+/* the footer draws the line above it, so the section before it drops its own */
+main > section:has(+ footer) {
+    border-bottom: none;
+}
+
 main > footer {
     display: flex;
     width: 100%;
     margin-top: auto;
+    border-top: var(--hashmark);
     padding: var(--padding-y) var(--padding-x);
     align-items: center;
     justify-content: center;
