@@ -1,5 +1,5 @@
 ---
-title: Chess
+title: Chess Set
 date: September 25th, 2026
 description: 3D-printable chess set.
 kicker: CAD
