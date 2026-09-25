@@ -80,9 +80,9 @@ After the buttermilk turned my dough into soup, I threw in the following ingredi
 Extracted and baked 800g of the final mixture.
 
 #### Result
-Way too dense, the buttermilk was the bane of this attempt. I added flour until it seemed like dough but this still wasn't a crowd pleaser. It yielded some very mediocre toast.
+Way too dense, buttermilk was the bane of this attempt. I added flour until it seemed like dough and was rewarded with some mediocre toast.
 
 ![#0002 LOAF](/assets/images/bread/rye_0002_loaf.jpg)
 
 #### Notes
-Next time I'm going to cut the buttermilk way down, subsitute the sugar for brown sugar, and let it rise for longer.
+Next time cut the buttermilk way down, use brown sugar, and let the dough rise longer.

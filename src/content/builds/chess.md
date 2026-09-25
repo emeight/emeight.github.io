@@ -11,3 +11,7 @@ phase: Prototyping
 ---
 ## Chess
 Chess.com irl.
+
+This knight, unsurprisingly, was challenging.
+
+![KNIGHT V1](/assets/vectors/knight.svg)
