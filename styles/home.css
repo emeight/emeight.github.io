@@ -1,0 +1,120 @@
+/* HOME: sections unique to the homepage (content/home.html) */
+
+main > .showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--text-gap);
+}
+
+main > .showcase > header {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    gap: calc(var(--text-gap) * 2);
+}
+
+main > .showcase > header > p {
+    color: var(--muted-color);
+}
+
+main > .showcase > header > .tags {
+    display: flex;
+    flex-direction: row;
+    gap: var(--text-gap);
+}
+
+main > .showcase > header > .tags > .tag > h6 {
+    color: var(--muted-color);
+}
+
+main > .showcase > header > .tags > .tag > p {
+    color: var(--accent-color);
+}
+
+main > .showcase > header > .tags > .tag > .pulse {
+    margin-top: 6px;
+    margin-left: 12px;
+}
+
+main > section > figure {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    width: 100%;
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+}
+
+main > section > figure > img {
+    display: block;
+    object-fit: contain;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    height: 250px;
+    padding: 8px;
+}
+
+main > section > figure > figcaption {
+    display: flex;
+    margin-right: auto;
+    width: 100%;
+    align-items: center;
+    padding: var(--padding-y) var(--padding-x);
+    color: var(--muted-color);
+    border-top: var(--hashmark);
+}
+
+main > .about {
+    display: flex;
+    flex-direction: column;
+    gap: var(--text-gap);
+}
+
+main > .about > p {
+    color: var(--muted-color);
+}
+
+main > .links {
+    padding: 0;
+}
+
+main > .links > header {
+    padding: calc(var(--padding-y) * 3) var(--padding-x);
+}
+
+main > .links > .rail {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: hidden;
+    border-top: var(--hashmark);
+}
+
+main > .links > .rail > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+main > .links > .rail > a:not(:last-child) {
+    border-right: var(--hashmark);
+}
+
+main > .links > .rail > a > svg {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    min-width: 96px;
+    max-width: 144px;
+    padding: var(--padding-y) var(--padding-x);
+    fill: currentColor;
+    color: var(--muted-color);
+}
+
+@media (max-width: 768px) {
+    main > .showcase {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}

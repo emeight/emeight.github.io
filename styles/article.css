@@ -1,0 +1,165 @@
+/* ARTICLE: generated note/build pages (note.html, build.html) + markdown prose */
+
+/* ARTICLE PAGES (generated) */
+main > :is(.note, .build) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+    padding: calc(var(--padding-y) * 4) var(--padding-x);
+}
+
+main > :is(.note, .build) > header {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--text-gap) / 2);
+    padding-bottom: calc(var(--text-gap) * 1.5);
+    margin-bottom: calc(var(--text-gap) * 1.5);
+    border-bottom: var(--hashmark);
+}
+
+main > :is(.note, .build) > header > h6 { color: var(--accent-color); }
+main > :is(.note, .build) > header > .date { color: var(--muted-color); }
+
+main > :is(.note, .build) > header > .build-meta {
+    display: flex;
+    gap: var(--text-gap);
+    color: var(--muted-color);
+    font-size: var(--text-sm);
+}
+
+/* PROSE: flow spacing instead of flex gap */
+.prose { display: block; }
+.prose > * { margin: 0; }
+.prose > * + * { margin-top: var(--text-gap); }
+
+/* headings: more room above, less below (rem so spacing ignores heading size) */
+.prose > :is(h2, h3, h4) { margin-top: 2rem; }
+.prose > h2 {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: var(--hashmark);
+}
+.prose > :is(h2, h3, h4) + * { margin-top: calc(var(--text-gap) / 2); }
+.prose > :first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+.prose h3 { font-family: "Lora", serif; font-size: var(--text-heading); }
+.prose h4 {
+    font-size: var(--text-kicker);
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* links */
+.prose a { color: var(--accent-color); text-decoration: underline; }
+
+/* lists: sit close to the sentence that introduces them */
+.prose > p + :is(ul, ol) { margin-top: calc(var(--text-gap) / 3); }
+.prose ul, .prose ol {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--text-gap) / 4);
+    margin: 0;
+    padding-left: var(--text-gap);
+}
+.prose li { line-height: 1.5; }
+.prose li::marker { color: var(--muted-color); }
+
+/* images: match figures */
+.prose img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+}
+
+/* figures (wrap images) */
+.prose figure {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    width: 100%;
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+}
+
+.prose figure > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 18px;
+    background: none;
+    border: none;
+}
+
+.prose figure > figcaption {
+    display: flex;
+    margin-right: auto;
+    width: 100%;
+    align-items: center;
+    padding: var(--padding-y) var(--padding-x);
+    color: var(--muted-color);
+    border-top: var(--hashmark);
+}
+
+/* tables: match figures and showcase tags */
+.prose table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+    overflow: hidden;
+    font-variant-numeric: tabular-nums;
+}
+.prose th,
+.prose td {
+    padding: var(--padding-y) var(--padding-x);
+    text-align: left;
+    vertical-align: top;
+}
+.prose th {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--muted-color);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: var(--hashmark);
+}
+.prose td { color: var(--text-color); }
+.prose td:first-child { color: var(--accent-color); }
+.prose tbody tr + tr td { border-top: var(--hashmark); }
+
+@media (max-width: 768px) {
+    .prose table { display: block; overflow-x: auto; }
+}
+
+/* blockquote */
+.prose blockquote {
+    margin: 0;
+    padding-left: var(--text-gap);
+    border-left: 2px solid var(--muted-color);
+    color: var(--muted-color);
+}
+
+/* code */
+.prose code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.9em;
+    background: var(--figure-bg);
+    padding: 1px 5px;
+    border-radius: var(--radius);
+}
+.prose pre {
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+    padding: var(--padding-x);
+    overflow-x: auto;
+}
+.prose pre code { background: none; padding: 0; }

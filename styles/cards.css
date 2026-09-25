@@ -1,0 +1,183 @@
+/* CARDS: note-card.html and build-card.html, on home + listing pages */
+
+main > .notes > header {
+    padding-bottom: calc(var(--padding-y) * 3);
+}
+
+main > .notes > .stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--text-gap);
+}
+
+main > .notes .note {
+    display: grid;
+    grid-template-columns: auto 1fr auto ;
+}
+
+main > .notes .note > .icon,
+main > .notes .note > .info,
+main > .notes .note > .extra {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+main > .notes .note > .icon {
+    align-items: center;
+    justify-content: center;
+}
+
+main > .notes .note > .info {
+    padding-inline: var(--text-gap);
+    gap: calc(var(--text-gap) / 2);
+}
+
+main > .notes .note > .extra {
+    align-items: end;
+    justify-content: center;
+    gap: var(--text-gap);
+}
+
+main > .notes .note > .icon > p {
+    color: var(--muted-color);
+    padding-top: 4px;
+}
+
+main > .notes .note .info > h6 {
+    color: var(--accent-color);
+    font-size: var(--text-kicker);
+}
+
+main > .notes .note .info > p,
+main > .notes .note .extra > .date {
+    color: var(--muted-color);
+    font-size: var(--text-label);
+}
+
+main > .notes .note .extra > svg {
+    height: 20px;
+    aspect-ratio: 1 / 1;
+}
+
+main > .builds > header {
+    padding-bottom: calc(var(--padding-y) * 3);
+}
+
+main > .builds > .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+main > .builds .build {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background: var(--figure-bg);
+    border: var(--hashmark);
+    border-radius: var(--radius);
+}
+
+main > .builds .build > .sidebar {
+    display: flex;
+    align-items: center;
+    writing-mode: vertical-rl;
+    padding: 12px 8px;
+}
+
+main > .builds .build .serial > p {
+    color: var(--muted-color);
+}
+
+main > .builds .build > .content {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    border-left: var(--hashmark);
+}
+
+main > .builds .build .media {
+    display: block;
+    height: 240px;
+    aspect-ratio: 3 / 2;
+    border-bottom: var(--hashmark);
+}
+
+main > .builds .build .media > img {
+    display: block;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    /* just doing this for cube */
+    filter: invert(1);
+}
+
+main > .builds .build .details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+main > .builds .build .details h4 {
+    color: var(--accent-color);
+}
+
+main > .builds .build .details p {
+    color: var(--muted-color);
+} 
+
+main > .builds .build .primary {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-y) var(--padding-x);
+    gap: calc(var(--text-gap) / 3);
+}
+
+main > .builds .build .primary > .tags {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: var(--text-gap);
+}
+
+main > .builds .build .metadata {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: var(--text-gap);
+    border-top: var(--hashmark);
+    padding: var(--padding-y) var(--padding-x);
+}
+
+main > .builds .build .metadata > .more {
+    display: flex;
+    margin-left: auto;
+}
+
+main > .builds .build .metadata > .more > svg {
+    display: flex;
+    height: 18px;
+    aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 768px) {
+    main > .notes > .stack > .note {
+        /* drops the icon column */
+        grid-template-columns: 1fr auto;
+    }
+
+    main > .notes > .stack > .note > .icon {
+        display: none;
+    }
+
+    main > .notes > .stack > .note > .info {
+        padding-left: 0;
+    }
+}
+
+main > .notes .note[hidden],
+main > .builds .build[hidden] {
+    display: none;
+}

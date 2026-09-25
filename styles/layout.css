@@ -1,0 +1,88 @@
+/* LAYOUT: site chrome from layout.html (nav, main, sections, footer) */
+
+nav {
+    width: 100%;
+    height: var(--nav-height);
+    padding-block: var(--padding-y);
+    border-bottom: var(--hashmark);
+}
+
+nav > .bounds {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+nav > .bounds > a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+nav > .bounds > a:first-child > img {
+    display: block;
+    height: 100%;
+}
+
+nav > .bounds > .links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: var(--text-gap);
+}
+
+nav > .bounds > .links > svg {
+    height: 30px;
+    aspect-ratio: 1 / 1;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    border-inline: var(--hashmark);
+    overflow: hidden;
+    min-height: calc(100vh - var(--nav-height));
+}
+
+main > section {
+    width: 100%;
+    padding: calc(var(--padding-y) * 3) var(--padding-x);
+    border-bottom: var(--hashmark);
+}
+
+main > section > header > h6 {
+    color: var(--accent-color);
+}
+
+main > footer {
+    display: flex;
+    width: 100%;
+    margin-top: auto;
+    padding: var(--padding-y) var(--padding-x);
+    align-items: center;
+    justify-content: center;
+    gap: clamp(42px, 4vw, 96px);
+}
+
+main > footer > .copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    color: var(--muted-color);
+}
+
+main > footer > .engraved {
+    text-align: right;
+    font-size: 102px;
+    color: #03176a;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15), 0px -1px 0px rgba(0,0,0,.7);
+}
+
+@media (max-width: 1000px) {
+    main > footer > .copyright {
+        gap: 12px;
+    }
+    main > footer > .engraved {
+        font-size: 64px;
+    }
+}
