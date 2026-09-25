@@ -6,13 +6,4 @@ serial: "000"
 kicker: "THOUGHTS"
 pattern: "000010000"
 ---
-
-# This is a heading
-These are some words beneath the heading.
-
-## This is a subheading
-Here are some *more* words...
-
-```rust
-let mut x = 3;
-```
+It's not that easy to make any sense at all.
